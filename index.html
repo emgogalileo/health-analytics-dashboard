@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Analytics Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <h1>Health Analytics</h1>
+            <p>Monitoreo inteligente de biomarcadores</p>
+        </header>
+        <div class="grid">
+            <div class="card card-pulse">
+                <h3>Frecuencia Cardíaca</h3>
+                <div class="value">72 <span class="unit">bpm</span></div>
+                <div class="trend positive">↑ 2% vs semana pasada</div>
+            </div>
+            <div class="card card-glucose">
+                <h3>Glucosa en Sangre</h3>
+                <div class="value">95 <span class="unit">mg/dL</span></div>
+                <div class="trend stable">- Estable</div>
+            </div>
+            <div class="card card-sleep">
+                <h3>Calidad de Sueño</h3>
+                <div class="value">85 <span class="unit">/100</span></div>
+                <div class="trend positive">↑ 5% Óptimo</div>
+            </div>
+        </div>
+        <div class="chart-container">
+            <h2>Evolución Semanal</h2>
+            <div class="chart-mock"></div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
