@@ -4,37 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Health Analytics Dashboard</title>
+    <meta name="description" content="Monitoreo inteligente de biomarcadores en tiempo real — Health Analytics Dashboard">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="dashboard">
         <header>
-            <h1>Health Analytics</h1>
-            <p>Monitoreo inteligente de biomarcadores</p>
+            <div class="header-info">
+                <h1>Health Analytics</h1>
+                <p>Monitoreo inteligente de biomarcadores</p>
+            </div>
+            <div class="header-actions">
+                <div class="status-pill">
+                    <span class="dot-green"></span> Sync Activo
+                </div>
+                <button id="btn-export" class="btn-secondary">Exportar CSV</button>
+                <button id="btn-refresh" class="btn-primary">↻ Actualizar</button>
+            </div>
         </header>
+
         <div class="grid">
             <div class="card card-pulse">
-                <h3>Frecuencia Cardíaca</h3>
-                <div class="value">72 <span class="unit">bpm</span></div>
-                <div class="trend positive">↑ 2% vs semana pasada</div>
+                <div class="card-header">
+                    <h3>Frecuencia Cardíaca</h3>
+                    <span class="badge badge-normal">Normal</span>
+                </div>
+                <div class="value"><span id="hr-val">72</span> <span class="unit">bpm</span></div>
+                <div class="trend positive" id="hr-trend">↑ 2% vs semana pasada</div>
+                <div class="sparkline" id="hr-spark"></div>
             </div>
             <div class="card card-glucose">
-                <h3>Glucosa en Sangre</h3>
-                <div class="value">95 <span class="unit">mg/dL</span></div>
-                <div class="trend stable">- Estable</div>
+                <div class="card-header">
+                    <h3>Glucosa en Sangre</h3>
+                    <span class="badge badge-normal" id="glucose-badge">Normal</span>
+                </div>
+                <div class="value"><span id="glucose-val">95</span> <span class="unit">mg/dL</span></div>
+                <div class="trend stable" id="glucose-trend">— Estable</div>
+                <div class="sparkline" id="glucose-spark"></div>
             </div>
             <div class="card card-sleep">
-                <h3>Calidad de Sueño</h3>
-                <div class="value">85 <span class="unit">/100</span></div>
-                <div class="trend positive">↑ 5% Óptimo</div>
+                <div class="card-header">
+                    <h3>Calidad de Sueño</h3>
+                    <span class="badge badge-good">Óptimo</span>
+                </div>
+                <div class="value"><span id="sleep-val">85</span> <span class="unit">/ 100</span></div>
+                <div class="trend positive" id="sleep-trend">↑ 5% Óptimo</div>
+                <div class="sparkline" id="sleep-spark"></div>
+            </div>
+            <div class="card card-oxygen">
+                <div class="card-header">
+                    <h3>Saturación O₂</h3>
+                    <span class="badge badge-good" id="o2-badge">Óptimo</span>
+                </div>
+                <div class="value"><span id="o2-val">98</span> <span class="unit">%</span></div>
+                <div class="trend positive">↑ Óptimo</div>
+                <div class="sparkline" id="o2-spark"></div>
             </div>
         </div>
+
         <div class="chart-container">
-            <h2>Evolución Semanal</h2>
-            <div class="chart-mock"></div>
+            <div class="chart-header">
+                <h2>Evolución Semanal</h2>
+                <div class="legend">
+                    <span class="leg-item"><span class="leg-dot" style="background:#38bdf8"></span>Frec. Cardíaca</span>
+                    <span class="leg-item"><span class="leg-dot" style="background:#a78bfa"></span>Glucosa</span>
+                    <span class="leg-item"><span class="leg-dot" style="background:#34d399"></span>O₂ %</span>
+                </div>
+            </div>
+            <div class="bar-chart" id="weekly-chart"></div>
+            <div class="chart-days" id="chart-days"></div>
+        </div>
+
+        <div class="alert-bar" id="alert-bar" style="display:none">
+            <span class="alert-icon">⚠️</span>
+            <span id="alert-msg">Glucosa elevada detectada: 110 mg/dL — Revisar dieta</span>
+            <button id="alert-dismiss">×</button>
         </div>
     </div>
+
     <script src="app.js"></script>
 </body>
 </html>
